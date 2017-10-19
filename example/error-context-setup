@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+
+errorCommand() {
+    false
+    echo "Should never get here with 'set -e' enabled."
+}

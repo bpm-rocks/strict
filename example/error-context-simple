@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+. ./error-context-setup
+errorCommand
+echo "Should not see this"

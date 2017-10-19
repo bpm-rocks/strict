@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -e
+
+isHonored() {
+    # When set -e is honored, the following should break execution
+    false
+    echo "$1 does not honor 'set -e'"
+    false
+}
+
+isHonored "||" || :
+isHonored "&&" && true
+
+! isHonored "!"
+
+if isHonored if; then
+    :
+elif isHonored elif; then
+    :
+fi
+
+while isHonored while; do
+    :
+done
+
+until isHonored until; do
+    break
+done
+
+# Must be last because this stops the program, like it should.
+isHonored "normal use case, this is not actually broken"

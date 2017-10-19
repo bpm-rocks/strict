@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+. ./error-context-setup
+if ! errorCommand; then
+    echo "Error command failed, as expected."
+else
+    echo "Weird, this should not happen."
+fi

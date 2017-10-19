@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+. bpm
+bpm::include unittest
+unittest::run
+
+unittest::setup() {
+    . ../libstrict
+}
+
+failWithTwo() {
+    return 2
+}
+
+unittest::case::returns-correct-code() {
+    local result
+
+    strict::run result failWithTwo
+    [[ "$result" == 2 ]]
+}
