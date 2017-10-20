@@ -15,5 +15,19 @@ unittest::case::returns-correct-code() {
     local result
 
     strict::run result failWithTwo
-    [[ "$result" == 2 ]]
+
+    if [[ "$result" != 2 ]]; then
+        echo "Expected 2, received $result" >&2
+        return 1
+    fi
+}
+
+unittest::case::does-not-invoke-ignored-error-context() {
+    local result
+
+    if [[ "$UNITTEST_MODE" != "strict-ignored" ]]; then
+        strict::checkErrorsHonored result
+
+        [[ "$result" == true ]] || return 1
+    fi
 }
