@@ -315,7 +315,7 @@ When you ensure that all functions are written this way, then they will always e
 Installation
 ============
 
-Add to your `bpm.ini` file, the following dependency.
+Add to your `bpm.ini` file the following dependency.
 
     [dependencies]
     strict=1
