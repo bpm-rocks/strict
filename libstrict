@@ -218,9 +218,11 @@ strict::run() {
     set +eE
     trap - ERR
     (
+        # Can't seem to find a safe way to pass the tests without using & and
+        # "wait". Open to ideas.
         eval "$restoreErrors"
-        "$@"
-        exit "$?"
+        "$@" &
+        wait "$!" && return $?
     )
 
     result=$?
